@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             thread {
                 try {
                     val api = PikPakApi().also { it.token = token }
-                    api.listFiles("*")
+                    api.listFiles("")
                     runOnUiThread {
                         val intent = Intent(this, VideoListActivity::class.java)
                         intent.putExtra("token", token)

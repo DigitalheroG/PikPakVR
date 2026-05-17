@@ -42,13 +42,13 @@ class VideoListActivity : AppCompatActivity() {
             adapter = this@VideoListActivity.adapter
         }
 
-        loadFiles("*")
+        loadFiles("")
     }
 
     override fun onBackPressed() {
         if (folderStack.isNotEmpty()) {
             folderStack.removeLast()
-            val parentId = if (folderStack.isEmpty()) "*" else folderStack.last()
+            val parentId = if (folderStack.isEmpty()) "" else folderStack.last()
             loadFiles(parentId)
         } else {
             super.onBackPressed()

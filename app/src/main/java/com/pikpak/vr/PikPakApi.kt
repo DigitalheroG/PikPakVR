@@ -51,14 +51,12 @@ class PikPakApi {
         return gson.fromJson(json, AuthResponse::class.java)
     }
 
-    fun listFiles(parentId: String = "*"): List<FileItem> {
+    fun listFiles(parentId: String = ""): List<FileItem> {
         val url = HttpUrl.Builder()
             .scheme("https").host("api-drive.mypikpak.com")
             .addPathSegments("drive/v1/files")
             .addQueryParameter("parent_id", parentId)
-            .addQueryParameter("page_token", "")
-            .addQueryParameter("with_audit", "false")
-            .addQueryParameter("filters", """{"kind":{"in":"drive#folder,drive#file"}}""")
+            .addQueryParameter("page_size", "100")
             .build()
 
         val request = Request.Builder()
@@ -70,7 +68,7 @@ class PikPakApi {
         val response = client.newCall(request).execute()
         val json = response.body?.string() ?: throw Exception("Empty response")
         if (!response.isSuccessful) throw Exception("List failed: $json")
-        return gson.fromJson(json, FileListResponse::class.java).files
+        return gson.fromJson(json, FileListResponse::class.java).files ?: emptyList()
     }
 
     fun getStreamUrl(fileId: String): String {
