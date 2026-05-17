@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:padding="32dp"
     android:background="#1a1a2e">
 
@@ -13,6 +12,7 @@
         android:text="PikPak VR"
         android:textSize="28sp"
         android:textColor="#e94560"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="16dp"/>
 
     <TextView
@@ -21,18 +21,20 @@
         android:text="从 mypikpak.com 网页版获取 Token:\nF12 → Application → Local Storage → access_token"
         android:textColor="#aaa"
         android:textSize="12sp"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/etToken"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:hint="粘贴 Access Token"
         android:textColorHint="#888"
         android:textColor="#fff"
         android:backgroundTint="#444"
         android:inputType="textMultiLine"
-        android:layout_marginBottom="32dp"/>
+        android:scrollbars="vertical"
+        android:maxLines="3"
+        android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/btnLogin"
