@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace 'com.pikpak.vr'
     compileSdk 34
     defaultConfig {
         applicationId "com.pikpak.vr"
