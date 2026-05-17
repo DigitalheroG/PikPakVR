@@ -13,35 +13,32 @@
         android:text="PikPak VR"
         android:textSize="28sp"
         android:textColor="#e94560"
-        android:layout_marginBottom="40dp"/>
-
-    <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="邮箱 / 手机号"
-        android:textColorHint="#888"
-        android:textColor="#fff"
-        android:backgroundTint="#444"
-        android:inputType="textEmailAddress"
         android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/etPassword"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="密码"
+        android:text="从 mypikpak.com 网页版获取 Token:\nF12 → Application → Local Storage → access_token"
+        android:textColor="#aaa"
+        android:textSize="12sp"
+        android:layout_marginBottom="32dp"/>
+
+    <EditText
+        android:id="@+id/etToken"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="粘贴 Access Token"
         android:textColorHint="#888"
         android:textColor="#fff"
         android:backgroundTint="#444"
-        android:inputType="textPassword"
+        android:inputType="textMultiLine"
         android:layout_marginBottom="32dp"/>
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="登录并进入 VR"
+        android:text="进入 VR"
         android:backgroundTint="#e94560"
         android:textColor="#fff"/>
 

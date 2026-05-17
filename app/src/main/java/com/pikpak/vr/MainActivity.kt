@@ -9,31 +9,29 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
-    private val api = PikPakApi()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         findViewById<Button>(R.id.btnLogin).setOnClickListener {
-            val user = findViewById<EditText>(R.id.etUsername).text.toString().trim()
-            val pass = findViewById<EditText>(R.id.etPassword).text.toString().trim()
-            if (user.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(this, "请输入账号和密码", Toast.LENGTH_SHORT).show()
+            val token = findViewById<EditText>(R.id.etToken).text.toString().trim()
+            if (token.isEmpty()) {
+                Toast.makeText(this, "请输入 Access Token", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            // Verify token works
             thread {
                 try {
-                    val auth = api.login(user, pass)
-                    api.token = auth.accessToken
+                    val api = PikPakApi().also { it.token = token }
+                    api.listFiles("*")
                     runOnUiThread {
                         val intent = Intent(this, VideoListActivity::class.java)
-                        intent.putExtra("token", auth.accessToken)
+                        intent.putExtra("token", token)
                         startActivity(intent)
                     }
                 } catch (e: Exception) {
                     runOnUiThread {
-                        Toast.makeText(this, "登录失败: ${e.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Token无效: ${e.message}", Toast.LENGTH_LONG).show()
                     }
                 }
             }
